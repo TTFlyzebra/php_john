@@ -1,0 +1,43 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript"> var ajaxurl= '{:U("/Home/ShowApply/del","","")}'</script>
+<script type="text/javascript" src="__PUBLIC__/js/showapply.js"></script>
+</head>
+<body>
+	<div class="sub-nov">
+		&emsp;<a href="{:U('/')}">首页</a>&gt;<a href="#">申请记录</a>
+	</div>
+	<div class="content">
+		<table class="table4">
+			<tr style="background: #00e8e8">
+				<th>类型</th>
+				<th>内容描述</th>
+				<th>提交时间</th>
+				<th>状态</th>
+				<th>审批领导</th>
+				<th>执行操作</th>
+			</tr>
+			<foreach name="showitems" item="v">
+			<tr>
+				<th>{$v.type}</th>
+				<td>{$v.describe}</td>
+				<th>{$v.apptime|date="Y-n-j G:i:s",###}</th>
+				<th>{$v.tstatus}</th>
+				<th>{$v.handuser}</th>
+				<th>
+				<if condition="$v['status'] neq 1">
+					<a href="javascript:postdel('{$v.id}','{$v.db}');">删除</a>
+				</if>
+				</th>
+			</tr>
+			</foreach>
+		</table>
+		<div class="mcenter"><a href="{:U('/Home/ShowApply')}?page={$page-1}">上一页</a>&emsp;第{$page}页&emsp;<a href="{:U('/Home/ShowApply')}?page={$page+1}">下一页</a></div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript">	
+	var statime = "{:C('WORK_START_HOUR')}"+":"+{:C('WORK_START_MIN')};
+	var endtime = "{:C('WORK_END_HOUR')}"+":"+{:C('WORK_END_MIN')};
+	var workday = {$workdays};
+	var holiday = {$holidays};
+</script>
+<script type="text/javascript" src="__PUBLIC__/js/admin-setmonth.js"></script>
+</head>
+
+<body>
+	<div class="sub-nov">
+		&emsp;<a href="{:U('/')}">首页</a>&gt; <a href="{:U('/Admin')}">后台管理</a>&gt; <a href="#">其它设置</a>
+	</div>
+	<div class="content">
+		<form name="saveForm" id="saveForm" accept-charset="utf-8" action="{:U('/Admin/SetMonth/saveset')}" method="post">
+			<table class="table5">
+				<tr>
+					<th colspan="5">
+						{$month|date="Y年n月",###}工作日设置&emsp;<span id="wokeholiday">工作日：{$workdays}天&emsp;休息日：{$holidays}天</span>
+						<input type="hidden" name="month" value="{$month}">
+						<font color="red">（注意：修改上班时间，会影响已提交申请单的计算。所以设置好了就尽量不要修改。）</font>
+					</th>
+				</tr>
+				<tr style="background: #d8e8e8">
+					<th>日期</th>
+					<th>上班时间</th>
+					<th>下班时间</th>
+					<th>状态</th>
+					<th>勾选休息</th>
+				</tr>
+				<foreach name="mdays" item="date">
+				<?php if($date['type']=="休息"){ ?>
+				<tr style="background: #989898">
+					<td>{$date.day}日&nbsp;星期{$date.week}</td>
+					<td><input type="text" name="stime[]" value="{$date['stime']}" id="stime"></td>
+					<td><input type="text" name="etime[]" value="{$date['etime']}" id="etime"></td>
+					<td id="type1">{$date.type}</td>
+					<td><input type="checkbox" checked="checked" id="ck"></td>
+				</tr>
+				<?php } else{ ?>
+				<tr>
+					<td>{$date.day}日&nbsp;星期{$date.week}</td>
+					<td><input type="text" name="stime[]" value="{$date['stime']}" id="stime"></td>
+					<td><input type="text" name="etime[]" value="{$date['etime']}" id="etime"></td>
+					<td id="type1">{$date.type}</td>
+					<td><input type="checkbox" id="ck"></td>
+				</tr>
+				<?php } ?>
+				</foreach>
+			</table>
+			<div class="mcenter"><a href="{:U('/Admin/SetMonth')}?month={$month}&action=fore">&lt;上个月&gt;</a><input type="submit" class="btn btn-primary btn150" value="保存当前设置" id="saveset"><a href="{:U('/Admin/SetMonth')}?month={$month}&action=next">&lt;下个月&gt;</a></div>
+		</form>
+	</div>
+</body>
+</html>

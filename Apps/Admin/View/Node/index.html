@@ -1,0 +1,151 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>宇翔科技后台管理</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/dialog.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/node.css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript"> var delurl= '{:U("/Admin/Node/del")}'</script>
+<script type="text/javascript"> var statusurl= '{:U("/Admin/Node/status")}'</script>
+<script type="text/javascript" src="__PUBLIC__/js/admin-node.js"></script>
+</head>
+<body>
+<div class="sub-nov">
+		&emsp;<a href="{:U('/')}">首页</a>&gt; <a href="{:U('/Admin')}">后台管理</a>&gt; <a href="#">节点管理</a>
+	</div>
+	<div class="content">
+		<div class="apps-title">网站目录<a href="javascript:addDlg('','0','1');">＋</a>
+			<foreach name='node' item='v'>
+			<div class="apps">
+				<div class="app">{$v.remark}<!-- 
+					 --><a href="javascript:addDlg('{$v.remark}','{$v.id}','2');">＋</a><!-- 
+					 --><if condition="$v['child']==null"><a href="javascript:delDlg('{$v.id}','{$v.name}','{$v.remark}','{$v.status}','{$v.pid}','{$v.level}');">－</a><!-- 
+					 --></if><a href="javascript:editDlg('{$v.id}','{$v.name}','{$v.remark}','1','{$v.pid}','{$v.level}','');">Ｅ</a>
+				</div>
+				<foreach name='v.child' item='c'>
+				<div class="controls">
+					<div class="control">{$c.remark}<!-- 
+					--><a href="javascript:addDlg('{$c.remark}','{$c.id}','3');">＋</a><!-- 
+					--><if condition="$c['child']==null"><a href="javascript:delDlg('{$c.id}','{$c.name}','{$c.remark}','{$v.status}','{$c.pid}','{$c.level}');">－</a><!-- 
+					--></if><a href="javascript:editDlg('{$c.id}','{$c.name}','{$c.remark}','1','{$c.pid}','{$c.level}','{$v.remark}');">Ｅ</a>
+					</div>	
+					<foreach name='c.child' item='m'>				
+					<div class="method">{$m.remark}<!-- 
+					--><a href="javascript:delDlg('{$m.id}','{$m.name}','{$m.remark}','{$v.status}','{$m.pid}','{$m.level}');">－</a><!-- 
+					--><a href="javascript:editDlg('{$m.id}','{$m.name}','{$m.remark}','1','{$m.pid}','{$m.level}','{$c.remark}');">Ｅ</a>
+					</div>
+					</foreach>
+				</div>
+				</foreach>
+			</div>
+			</foreach>
+		</div>
+	</div>
+	<!-- 弹出菜单 Start-->
+	<div class="node-mask"></div>
+	<!-- 添加菜单 Start-->
+	<div class="node-dlg-add">
+		<form name="addFrom" id="addFrom" accept-charset="utf-8" action="__ROOT__/Admin/Node/add" method="post">
+			<table class="admin-tab" width="100%">
+				<tbody>
+				<div class="node-dlg-title">添加节点
+					<div class="node-dlg-title-close"><a href="javascript:closeAddDlg();" title="关闭" >×</a></div>
+				</div>
+					<tr>
+						<th><span class="require-red">*</span>节点名称：</th>
+						<td>
+							<input class="common-text" type="text" id="node_name" name="node_name" size="20" value="">
+							</td>
+					</tr>
+					<tr>
+						<th><span class="require-red">*</span>节点描述：</th>
+						<td>
+							<input class="common-text" type="text" id="node_remark" name="node_remark" size="40" value="">
+						</td>
+					</tr>
+					<tr>
+						<th><span class="require-red">*</span>是否启用：</th>
+						<td>
+							<input class="common-text" id="node_status" name="node_status" value="1" type="radio" checked = "checked">开启
+								<input class="common-text" id="node_status" name="node_status" value="0" type="radio">关闭
+						</td>
+					</tr>
+					<tr>
+						<th><span class="require-red">*</span>父&ensp;节&ensp;点：</th>
+						<td>
+							<input class="common-text" type="hidden" id="node_pid" name="node_pid" size="20" value="1">
+							<input class="common-text" type="text" id="parent_name1" size="20" value="" readonly="true">
+						</td>
+					</tr>
+					<tr>
+						<th><span class="require-red">*</span>应用级别：</th>
+						<td>
+							<input class="common-text" type="text" id="node_level" name="node_level" size="20" value="1" readonly="true">
+						</td>
+						</tr>
+					<tr>
+						<th colspan="2">
+							<input type="submit"class="btn btn-primary btn6 mr10" value="添加" id="add"> 
+							<input type="reset"	class="btn btn-primary btn6 mr10" value="重置">
+						</th>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+	<!-- 修改菜单 Start-->
+	<div class="node-dlg-edit">
+		<form name="addFrom" id="addFrom" accept-charset="utf-8" action="__ROOT__/Admin/Node/edit" method="post">
+			<input type="hidden" id="edit_id" name="node_id" value="0">
+			<table class="admin-tab" width="100%">
+				<tbody>
+				<div class="node-dlg-title">修改节点
+					<div class="node-dlg-title-close"><a href="javascript:closeEditDlg();" title="关闭" >×</a></div>
+				</div>
+					<tr>
+						<th><span class="require-red">*</span>节点名称：</th>
+						<td>
+							<input class="common-text" type="text" id="edit_name" name="node_name" size="20" value="">
+							</td>
+					</tr>
+					<tr>
+						<th><span class="require-red">*</span>节点描述：</th>
+						<td>
+							<input class="common-text" type="text" id="edit_remark" name="node_remark" size="40" value="">
+						</td>
+					</tr>
+					<tr>
+						<th><span class="require-red">*</span>是否启用：</th>
+						<td>
+							<input class="common-text" id="edit_status" name="node_status" value="1" type="radio" checked = "checked">开启
+								<input class="common-text" id="edit_status" name="node_status" value="0" type="radio">关闭
+						</td>
+					</tr>
+					<tr>
+						<th><span class="require-red">*</span>父&ensp;节&ensp;点：</th>
+						<td>
+							<input class="common-text" type="hidden" id="edit_pid" name="node_pid" size="20" value="1" readonly="true">
+							<input class="common-text" type="text" id="parent_name2" size="20" value="" readonly="true">
+						</td>
+					</tr>
+					<tr>
+						<th><span class="require-red">*</span>应用级别：</th>
+						<td>
+							<input class="common-text" type="text" id="edit_level" name="node_level" size="20" value="1" readonly="true">
+						</td>
+						</tr>
+					<tr>
+						<th colspan="2">
+							<input type="submit"class="btn btn-primary btn6 mr10" value="修改" id="add"> 
+							<input type="reset"	class="btn btn-primary btn6 mr10" value="重置">
+						</th>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+<!-- 弹出菜单 End -->
+</body>
+</html>

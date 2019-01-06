@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>考勤管理系统</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/main.css" />
+<script type="text/javascript" src="__PUBLIC__/js/times.js"></script>
+</head>
+<body onload="showLeftTime()">
+	<div class="top">
+		<div class="top-logo">
+			<img alt="" src="__PUBLIC__/images/logo.png">
+		</div>
+		<div class="top-name">
+			<div class="top-name-cn">考勤管理系统1.0V</div>
+		</div>
+		<div class="top-info">
+			<div class="top-info-date">
+				<label id="show">显示时间的位置</label>
+			</div>
+		</div>
+	</div>
+	<div class="sidebar">
+		<!--div class="sidebar-user">
+			<img src="__APP__/{$Think.session.photo} ">
+			<div class="sidebar-text">{$Think.session.loginIP}</div>
+			<div class="sidebar-text">{$Think.session.loginname}</div>
+		</div-->
+		<ul class="sidebar-list">
+			<?php if($super||in_array("/Admin/Role",$paths)||in_array("/Admin/Node",$paths)||in_array("/Admin/Access",$paths)||in_array("/Admin/Verify",$paths)){ ?>
+			<li>
+				<a href="#">权限设置</a>
+				<ul class="sub-menu">
+					<?php if($super||in_array("/Admin/Node",$paths)){ ?>
+					<li>
+						<a href="{:U('/Admin/Node')}">节点管理</a>
+					</li>
+					<?php } ?>
+					<?php if($super||in_array("/Admin/Role",$paths)){ ?>
+					<li>
+						<a href="{:U('/Admin/Role')}">角色管理</a>
+					</li>
+					<?php } ?>
+					<?php if($super||in_array("/Admin/Access",$paths)){ ?>
+					<li>
+						<a href="{:U('/Admin/Access')}">分配权限</a>
+					</li>
+					<?php } ?>
+					<?php if($super||in_array("/Admin/Verify",$paths)){ ?>
+					<li>
+						<a href="{:U('/Admin/Verify')}">分配角色</a>
+					</li>
+					<?php } ?>
+				</ul>
+			</li>
+			<?php } ?>
+			
+			<li>
+				<a href="#">公司设置</a>
+				<ul class="sub-menu">
+					<li>
+						<a href="{:U('/Admin/Config')}">参数设置</a>
+					</li>
+					<li>
+						<a href="{:U('/Admin/SetMonth')}">作息安排</a>
+					</li>
+					<li>
+						<a href="{:U('/Admin/Dept')}">部门设置</a>
+					</li>
+					<li>
+						<a href="{:U('/Admin/Holiday')}">休假分类</a>
+					</li>
+					<li>
+						<a href="{:U('/Admin/HandleConfig')}">审批设置</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">其它操作</a>
+				<ul class="sub-menu">
+					<li>
+						<a href="{:U('/Home')}">返回前台</a>
+					</li>
+					<li>
+						<a href="{:U('/Home/Login/logout')}">安全退出</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

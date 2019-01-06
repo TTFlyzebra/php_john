@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Holiday</title>
+<link href="__PUBLIC__/css/main.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<div class="sub-nov">
+		&emsp;<a href="{:U('/')}">首页</a>&gt;<a href="#">本月概况</a>
+	</div>
+	<div class="content">
+		<div class="title"><a href="{:U('/Home/AllRecord')}?month={$month}&action=fore&id={$user['id']}">&lt;上个月&gt;</a>{$month|date="Y年n月",###}上班记录<a href="{:U('/Home/AllRecord')}?month={$month}&action=next&id={$user['id']}">&lt;下个月&gt;</a></div>
+		<table class="table1">
+			<tr>
+				<th>部&emsp;&emsp;门：</th>
+				<td>{$user.deptname}</td>
+				<td></td>
+				<td></td>
+				<th>累计加班（h）</th>
+				<td>{$applyworkhours}小时</td>
+			</tr>
+			<tr>
+				<th>申&ensp;请&ensp;人：</th>
+				<td>{$user.loginname}</td>
+				<th style="background: #7fffff">全月加班次数</th>
+				<th style="background: #ffff7f">工作日休假次数</th>
+				<th>累计休假（h）</th>
+				<td>{$applyholihours}小时</td>
+			</tr>
+			<tr>
+				<th>申请月份：</th>
+				<td>{$month|date="Y年n月",###}</td>
+				<th style="background: #7fffff">{$applyworkdays}/{$sumdays}</th>
+				<th style="background: #ffff7f">{$applyholidays}/{$workdays}</th>
+				<th>累计调休（h）</th>
+				<td>0小时</td>
+			</tr>
+		</table>
+		<table class="table2">
+			<tr style="background: #d8e8e8">
+				<th>日期</th>
+				<th>上班时间</th>
+				<th>下班时间</th>
+				<th>加班时长（h）</th>
+				<th>加班内容</th>
+				<th>请假类型</th>
+				<th>休假时长（h）</th>
+				<th>其它信息</th>
+			</tr>
+			<foreach name="mdays" item="v"> 
+			<?php if($v['type']=="休息"||$v[holidayname]!=null){ ?><tr style="background: #989898">
+			<?php } else{ ?><tr>
+				<?php } ?>
+				<td>{$v.day}日&nbsp;星期{$v.week}({$v.type})</td>
+				<td>{$v.stime}</td>
+				<td>{$v.etime}</td>
+				<td>{$v.worktime}</td>
+				<td>{$v.workcontent}</td>
+				<td>{$v.holidayname}</td>
+				<td>{$v.holitime}</td>
+				<td>{$v.tstatus}</td>
+			</tr>
+			</foreach>
+		</table>
+	</div>
+</body>
+</html>

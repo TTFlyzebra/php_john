@@ -1,0 +1,52 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript"> var ajaxurl= '{:U("/Admin/Dept/del","","")}'</script>
+<script type="text/javascript" src="__PUBLIC__/js/admin-dept.js"></script>
+</head>
+<body>
+	<div class="sub-nov">
+		&emsp;<a href="{:U('/')}">首页</a>&gt; <a href="{:U('/Admin')}">后台管理</a>&gt; <a href="#">部门管理</a>
+	</div>
+	<div class="content">
+		<table class="admin-tab" width="100%">
+			<tr style="background: #e8e8e8">
+				<th>ID</th>
+				<th>部门名称</th>
+				<th>备注</th>
+				<th>执行操作</th>
+			</tr>
+			<foreach name='depts' item='v'>
+			<tr>
+				<th>{$v.id}</th>
+				<th>{$v.deptname}</th>
+				<th>{$v.remark}</th>
+				<th><a href="javascript:postdel('{$v.id}');">删除</a></th>
+			</tr>
+			</foreach>
+		</table>
+		<br>
+		<form name="addFrom" id="addFrom" accept-charset="utf-8" action="{:U('/Admin/Dept/add')}" method="post">
+			<table class="admin-tab" width="800px">
+				<tr>
+					<th style="width: 838px; background: #e8e8e8" colspan="2">添加部门</th>
+				</tr>
+				<tr>
+					<th width="200px"><span class="require-red">*</span>部门名称：</th>
+					<td><input class="text-input" id="deptname" name="deptname" size="50" value="" type="text"></td>
+				</tr>
+				<tr>
+					<th><span class="require-red">&ensp;</span>备&emsp;&emsp;注：</th>
+					<td><input class="text-input" id="remark" name="remark" size="50" value="" type="text"></td>
+				</tr>
+				<tr>
+					<th colspan="2"><input type="submit" class="btn btn-primary btn6 mr10" value="添加" id="add"> <input type="reset" class="btn btn-primary btn6 mr10" value="重置"></th>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/node.css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript">
+	var ajaxurl = '{:U("/Admin/Access")}'
+</script>
+<script type="text/javascript" src="__PUBLIC__/js/admin-access.js"></script>
+</head>
+<body>
+	<div class="sub-nov">
+		&emsp;<a href="{:U('/')}">首页</a>&gt; <a href="{:U('/Admin')}">后台管理</a>&gt; <a href="#">分配权限</a>
+	</div>
+	<form name="saveForm" id="saveForm" accept-charset="utf-8" action="{:U('/Admin/Access/setAccess')}" method="post">
+		<div class="content">
+			<div class="apps-title">
+				<div class="prm-save">
+					网站目录
+					<select name="pid" id="pid" class="select-role">
+						<option value="">请选择角色</option>
+						<!-- 确定哪一项被选中 -->
+						<foreach name='role' item='v'> <if condition="$v['id'] eq $r_id">
+						<option value="{$v.id}" selected="selected">{$v.remark}</option>
+						<else />
+						<option value="{$v.id}">{$v.remark}</option>
+						</if> </foreach>
+					</select>
+					<input type="submit" class="btn btn-primary" value="保存当前设定" id="save">
+				</div>
+				<foreach name='node' item='v'>
+				<div class="apps">
+					<div class="app">
+						{$v.remark}
+						<if condition='$v["access"]'> <input class="checkbox1" type="checkbox" name="nodeid[]" value="{$v.id}_1" id="1" checked="checked"> <else /> <input class="checkbox1" type="checkbox" name="nodeid[]" value="{$v.id}_1" id="1"> </if>
+					</div>
+					<foreach name='v.child' item='c'>
+					<div class="controls">
+						<div class="control">
+							{$c.remark}
+							<if condition='$c["access"]'> <input class="checkbox1" type="checkbox" name="nodeid[]" value="{$c.id}_1" id="2" checked="checked"> <else /> <input class="checkbox1" type="checkbox" name="nodeid[]" value="{$c.id}_1" id="2"> </if>
+						</div>
+						<foreach name='c.child' item='m'>
+						<div class="method">
+							{$m.remark}
+							<if condition='$m["access"]'> <input class="checkbox1" type="checkbox" name="nodeid[]" value="{$m.id}_1" id="3" checked="checked"> <else /> <input class="checkbox1" type="checkbox" name="nodeid[]" value="{$m.id}_1" id="3"> </if>
+						</div>
+						</foreach>
+					</div>
+					</foreach>
+				</div>
+				</foreach>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

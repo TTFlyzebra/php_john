@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>宇翔科技后台管理</title>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/appworkday.js"></script>
+</head>
+<body>
+	<div class="sub-nov">
+		&emsp;<a href="{:U('/')}">首页</a>&gt;<a href="#">加班申请</a>
+	</div>
+	<div class="content">
+		<div class="result-wrap">
+			<form action="{:U('/Home/ApplyWorkday/add')}" method="post" id="from1" name="form1" enctype="multipart/form-data">
+				<table class="table3" width="100%">
+						<tr>
+							<th width="120">姓&emsp;&emsp;名：</th>
+							<td>{$Think.session.loginname}</td>
+						</tr>
+						<tr>
+							<th>部&emsp;&emsp;门：</th>
+							<td>{$Think.session.deptname}</td>
+						</tr>
+						<tr>
+							<th>加班时间：</th>
+							<td>从
+							<input class="text-input w50p" id="syear" name="syear" size="6" value="{$today['year']}" type="text">年
+							<input class="text-input w25p" id="smonth" name="smonth" size="4" value="{$today['month']}" type="text">月
+							<input class="text-input w25p" id="sday" name="sday" size="4" value="{$today['day']}" type="text">日
+							<input class="text-input w25p" id="shour" name="shour" size="4" value="0" type="text">时
+							<input class="text-input w25p" id="sminute" name="sminute" size="4" value="00" type="text">分到
+							<!-- input class="text-input w50p" id="eyear" name="eyear" size="6" value="{$today['year']}" type="text">年
+							<input class="text-input w25p" id="emonth" name="emonth" size="4" value="{$today['month']}" type="text">月
+							<input class="text-input w25p" id="eday" name="eday" size="4" value="{$today['day']}" type="text"日-->
+							<input class="text-input w25p" id="ehour" name="ehour" size="4" value="0" type="text">时
+							<input class="text-input w25p" id="eminute" name="eminute" size="4" value="00" type="text">分
+							<br><font color="blue">注意时间为24小时制，例：下午6点必须填18点。</font>
+							</td>
+						</tr>
+						<tr>
+							<th>加班内容：</th>
+							<td><input class="text-input" name="workcontent" id="workcontent" style="width: 98%;" type="text"></td>
+						</tr>
+						<tr>
+							<th>备注信息：</th>
+							<td><textarea class="text-textarea" name="remark" id="remark" cols="30" style="width: 98%;" rows="5"></textarea></td>
+						</tr>
+						<tr>
+							<th colspan="2"><input type="button" class="btn btn-primary btn200" value="提交申请" id="add"> <input type="reset" class="btn btn-primary btn200" value="重新填写"></th>
+						</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

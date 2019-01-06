@@ -1,0 +1,69 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/dialog.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/node.css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript"> var delurl= '{:U("/Admin/Node/del")}'</script>
+<script type="text/javascript"> var statusurl= '{:U("/Admin/Node/status")}'</script>
+<script type="text/javascript" src="__PUBLIC__/js/admin-node.js"></script>
+</head>
+<body>
+	<div class="sub-nov">
+		&emsp;<a href="{:U('/')}">首页</a>&gt; <a href="{:U('/Admin')}">后台管理</a>&gt; <a href="#">参数设置</a>
+	</div>
+	<div class="content">
+		<font color="red">注意！此设置修改后只对修改后的提交申请有效。</font>
+		<form name="addFrom" id="addFrom" accept-charset="utf-8" action="{:U('/Admin/Config/save')}" method="post">
+			<table class="table4">
+				<tr>
+					<td>1.正常上班时间： 
+					<input class="text-input w25p" name="WORK_START_HOUR" size="2" value="{:C('WORK_START_HOUR')}" type="text">
+					点<input class="text-input w25p" name="WORK_START_MIN" size="2" value="{:C('WORK_START_MIN')}" type="text">分，正常下班时间： 
+					<input class="text-input w25p" name="WORK_END_HOUR" size="2" value="{:C('WORK_END_HOUR')}" type="text">
+					点<input class="text-input w25p" name="WORK_END_MIN" size="2" value="{:C('WORK_END_MIN')}" type="text">分。减去午休时间，一个工作日的时间为： 
+					<input class="text-input w25p" name="WORK_TIMES" size="2" value="{:C('WORK_TIMES')}" type="text">小时。
+					</td>
+				</tr>
+				<tr>
+					<td>2.加班时间大于 
+					<input class="text-input w25p" name="WORK_SUMTIME" size="2" value="{:C('WORK_SUMTIME')}" type="text">小时要减去用餐时间 
+					<input class="text-input w25p" name="WORK_SUBTIME" size="2" value="{:C('WORK_SUBTIME')}" type="text">小时。
+					</td>
+				</tr>
+				<tr>
+					<td>3.请假时间不足{:C('HOLIDAY_MIN_TIME')}小时计为
+					<input class="text-input w25p" name="HOLIDAY_MIN_TIME" size="2" value="{:C('HOLIDAY_MIN_TIME')}" type="text">小时。
+				</tr>
+				<tr>
+					<td>4.注册帐号无需审核具有<select style="margin-bottom: 5px; height: 26px; font-size: 18px" name="USER_ROLE_ID">
+							<option></option>
+							<foreach name='role' item='r'> 
+							<if condition="$r['id'] eq C('USER_ROLE_ID')">
+								<option value="{$r.id}" selected="selected">{$r.remark}</option>
+							<else />
+								<option value="{$r.id}">{$r.remark}</option>
+							</if> </foreach>
+						</select>权限。
+				</tr>
+				<tr>
+					<td>5.审批申请需具有<select style="margin-bottom: 5px; height: 26px; font-size: 18px" name="HAND_ROLE_ID">
+							<option></option>
+							<foreach name='role' item='r'> 
+							<if condition="$r['id'] eq C('HAND_ROLE_ID')">
+								<option value="{$r.id}" selected="selected">{$r.remark}</option>
+							<else />
+								<option value="{$r.id}">{$r.remark}</option>
+							</if> </foreach>
+						</select>权限。
+				</tr>
+				<tr>
+					<th><input type="submit" class="btn btn-primary btn6 mr10" value="保存设置" id="save"></th>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

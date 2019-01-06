@@ -1,0 +1,77 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/dialog.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/node.css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript"> var delurl= '{:U("/Admin/Node/del")}'</script>
+<script type="text/javascript"> var statusurl= '{:U("/Admin/Node/status")}'</script>
+<script type="text/javascript" src="__PUBLIC__/js/admin-node.js"></script>
+</head>
+<body>
+	<div class="sub-nov">
+		&emsp;<a href="{:U('/')}">首页</a>&gt; <a href="{:U('/Admin')}">后台管理</a>&gt; <a href="#">参数设置</a>
+	</div>
+	<div class="content">
+		<form name="form1" id="form1" accept-charset="utf-8" action="{:U('/Admin/HandleConfig/save')}" method="post">
+			<table class="table4">
+				<foreach name='dept' item='d'> 
+				<tr>
+					<td>({$d.deptname})申请加班时间累计小于等于<input class="text-input w50p" name="HANDLE_WORK_MIN_TIME{$d[id]}" size="4" value="{:C('HANDLE_WORK_MIN_TIME'.$d[id])}" type="text">小时，由
+						<select style="margin-bottom: 5px; height: 26px; font-size: 18px" name="HANDLE_WORK_MIN_USER{$d[id]}" >
+							<option></option>
+							<foreach name='user' item='u'> 
+							<if condition="$u['user_id'] eq C('HANDLE_WORK_MIN_USER'.$d[id])">
+								<option value="{$u.user_id}" selected="selected">{$u.loginname}({$u.deptname})</option>
+							<else />
+								<option value="{$u.user_id}">{$u.loginname}({$u.deptname})</option>
+							</if> 
+							</foreach>
+						</select>审批；大于{:C('HANDLE_WORK_MIN_TIME'.$d[id])}小时由
+						<select style="margin-bottom: 5px; height: 26px; font-size: 18px" name="HANDLE_WORK_MAX_USER{$d[id]}" >
+							<option></option>
+							<foreach name='user' item='u'> 
+							<if condition="$u['user_id'] eq C('HANDLE_WORK_MAX_USER'.$d[id])">
+								<option value="{$u.user_id}" selected="selected">{$u.loginname}({$u.deptname})</option>
+							<else />
+								<option value="{$u.user_id}">{$u.loginname}({$u.deptname})</option>
+							</if> 
+							</foreach>
+						</select>审批。
+					</td>
+				</tr>
+				<tr>
+					<td>({$d.deptname})申请休假时间累计小于等于<input class="text-input w50p" name="HANDLE_HOLI_MIN_TIME{$d[id]}" size="4" value="{:C('HANDLE_HOLI_MIN_TIME'.$d[id])}" type="text">小时，由
+						<select style="margin-bottom: 5px; height: 26px; font-size: 18px" name="HANDLE_HOLI_MIN_USER{$d[id]}" >
+							<option></option>
+							<foreach name='user' item='u'> 
+							<if condition="$u['user_id'] eq C('HANDLE_HOLI_MIN_USER'.$d[id])">
+								<option value="{$u.user_id}" selected="selected">{$u.loginname}({$u.deptname})</option>
+							<else />
+								<option value="{$u.user_id}">{$u.loginname}({$u.deptname})</option>
+							</if> 
+							</foreach>
+						</select>审批；大于{:C('HANDLE_HOLI_MIN_TIME'.$d[id])}小时由
+						<select style="margin-bottom: 5px; height: 26px; font-size: 18px" name="HANDLE_HOLI_MAX_USER{$d[id]}" >
+							<option></option>
+							<foreach name='user' item='u'> 
+							<if condition="$u['user_id'] eq C('HANDLE_HOLI_MAX_USER'.$d[id])">
+								<option value="{$u.user_id}" selected="selected">{$u.loginname}({$u.deptname})</option>
+							<else />
+								<option value="{$u.user_id}">{$u.loginname}({$u.deptname})</option>
+							</if> 
+							</foreach>
+						</select>审批。
+					</td>
+				</tr>
+				</foreach>
+				<tr>
+					<th><input type="submit" class="btn btn-primary btn6 mr10" value="保存设置" id="save"></th>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

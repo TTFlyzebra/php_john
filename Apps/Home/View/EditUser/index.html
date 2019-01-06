@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/md5.js"></script>
+<script type="text/javascript">	
+	var ajaxurl = '{:U("/Home/Ajax/log")}';
+	var loginname = '{$user['loginname']}';
+</script>
+<script type="text/javascript" src="__PUBLIC__/js/edituser.js"></script>
+</head>
+<body>
+	<div class="sub-nov">
+		&emsp;<a href="{:U('/')}">首页</a>&gt;<a href="#">修改资料</a>
+	</div>
+	<div class="content">
+		<form name="form1" id="form1" accept-charset="utf-8" action='{:U("/Home/EditUser/edit")}' method="post" enctype="multipart/form-data">
+			<table class="table6" width="500px">
+				<tr>
+					<th colspan="2">{$Think.session.loginname}({$Think.session.deptname})</th>
+				</tr>
+				<tr>
+					<td style="text-align: right">部门：</td>
+					<td><select class="text-select" name="dept_id" id="dept_id">
+							<option value="">请选择部门</option>
+							<foreach name='depts' item='v'>
+							<if condition="$v['id'] eq $user['dept_id']">
+							<option value="{$v.id}" selected="selected">{$v.deptname}</option>
+							<else />
+							<option value="{$v.id}">{$v.deptname}</option>
+							</if> 
+							</foreach>
+						</select></td>
+				</tr>
+				<tr>
+					<td style="text-align: right">联系电话：</td>
+					<td><input class="text-input" id="telephone" name="telephone" value="{$user.telephone}" type="text"></td>
+				</tr>
+				<tr>
+					<td style="text-align: right">邮箱地址：</td>
+					<td><input class="text-input" id="email" name="email" value="{$user.email}" type="text"></td>
+				</tr>
+				<tr>
+					<td style="text-align: right">二寸照片：</td>
+					<td><input style="weith: 28px;" id="photo" name="photo" value="" type="file">3:4</td>
+				</tr>
+				<tr>
+					<td style="text-align: right">新密码：</td>
+					<td><input class="text-input" id="newpassword" name="newpassword" size="20" value="" type="password"></td>
+				</tr>
+				<tr>
+					<td style="text-align: right">新密码确认：</td>
+					<td><input class="text-input" id="newpassword1" name="password" size="20" value="" type="password"></td>
+				</tr>
+				<tr>
+					<td style="text-align: right">旧密码：</td>
+					<td><input class="text-input" id="password" name="password" size="20" value="" type="password"></td>
+				</tr>
+				<tr>
+					<th colspan="2">
+						<div id="message">不修改的内容直接留空</div>
+					</th>
+				</tr>
+
+				<tr>
+					<th colspan="2"><input type="button" class="btn btn-primary btn100" value="确定修改" id="eidt">
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

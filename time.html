@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>jquery 动态显示时间</title>
+<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+<script type="text/javascript">  
+        $(function() {  
+            setInterval("GetTime()", 1000);  
+        });  
+      
+        function GetTime() {  
+            var mon, day, now, hour, min, ampm, time, str, tz, end, beg, sec;  
+            /*  
+            mon = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",  
+                    "Sep", "Oct", "Nov", "Dec");  
+            */  
+            mon = new Array("一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月",  
+                    "九月", "十月", "十一月", "十二月");  
+            /*  
+            day = new Array("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat");  
+            */  
+            day = new Array("周日", "周一", "周二", "周三", "周四", "周五", "周六");  
+            now = new Date();  
+            hour = now.getHours();  
+            min = now.getMinutes();  
+            sec = now.getSeconds();  
+            if (hour < 10) {  
+                hour = "0" + hour;  
+            }  
+            if (min < 10) {  
+                min = "0" + min;  
+            }  
+            if (sec < 10) {  
+                sec = "0" + sec;  
+            }  
+            $("#Timer").html(  
+                    "<nobr>" + day[now.getDay()] + ", " + mon[now.getMonth()] + " "  
+                            + now.getDate() + ", " + now.getFullYear() + " " + hour  
+                            + ":" + min + ":" + sec + "</nobr>");  
+      
+        }  
+    </script>
+</head>
+<body>
+	<div style="background: pink; width: 200px;" id="Timer">
+</body>
+</html>

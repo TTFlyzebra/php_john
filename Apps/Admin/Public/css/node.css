@@ -1,0 +1,162 @@
+.apps-title {
+	margin:1px 1px;
+	width: auto;
+	height: auto;
+	overflow: hidden;
+	border: 1px solid #000;
+	font-size: 20px;
+	text-indent: 10px;
+}
+
+.apps-title a{
+	margin:1px 1px;
+	padding:2px 2px;
+	font-size: 20px;
+	background: #008000;
+	color: #fff;
+	border-radius: 12px;
+}
+.apps {
+	margin:1px 1px;
+	width: auto;
+	height: auto;
+	overflow: hidden;
+	border: 1px solid #888888;
+	font-size: 16px;
+	text-indent: 10px;
+}
+
+.app {
+	height: 36px;
+	line-height: 36px;
+	background: #e6e6e6;
+	color: 0b99d8;
+}
+.apps a{
+	margin:1px 1px;
+	padding:2px 2px;
+	font-size: 14px;
+	background: #008000;
+	color: #fff;
+	border-radius: 9px;
+}
+
+.controls {
+	height: auto;
+	width: auto;
+	margin:2px 2px;
+	float: left;
+	border: 1px solid #e6e6e6;
+}
+
+.control {
+	min-width: 100px;
+	display: block;
+	height: 32px;
+	line-height: 32px;
+	background: #f6f6f6;
+}
+
+.method {
+	margin:1px 1px;
+	height: 28px;
+	line-height: 28px;
+	width: 180px;
+	float: left;
+	text-align: left;
+	border: 1px solid #f6f6f6;
+	font-size: 14px;
+}
+
+.bt {
+	display: block;
+	width: 100px;
+	height: 28px;
+	line-height: 28px;
+	font-size: 16px;
+	text-align: center;
+	background: #670768;
+	color: #fff;
+	border-radius: 4px;
+}
+
+.node-dlg-add {
+	z-index:9999;
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	margin-left: -250px;
+	margin-top: -130px;
+	width: 500px;
+	height: 260px;
+	border-radius:5px;
+	padding:5px 5px;
+	border:solid 2px #666;
+	background-color:#f8ffff;
+	box-shadow: 0 0 10px #666;
+	display:none;
+}
+
+.node-dlg-edit {
+	z-index:9999;
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	margin-left: -250px;
+	margin-top: -130px;
+	width: 500px;
+	height: 260px;
+	border-radius:5px;
+	padding:5px 5px;
+	border:solid 2px #666;
+	background-color:#f8ffff;
+	box-shadow: 0 0 10px #666;
+	display:none;
+}
+
+.node-mask {
+	z-index: 9998;
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:#000;
+	opacity:0.3;
+	filter:alpha(opacity=30);
+	display:none;
+}
+
+.node-dlg-title{
+	height:40px;
+	line-height:40px;
+	font-size: 24px;
+	text-align: center;
+	text-indent: 20px;
+	background-color:#8080ff;
+}
+
+.node-dlg-title-close{
+	height:36px;
+	width:36px;
+	font-size: 36px;
+	line-height:36px;
+	text-align: center;
+	text-indent: 0px;
+	background-color:#fff;
+	border: 2px solid #000000;
+	float:right;
+}
+
+.select-role {
+	text-align: middle;
+	font-size: 18px;
+	height: 30px;
+}
+
+.prm-save{
+	font-size: 20px;
+	text-align: left;
+	padding:2px 0px;
+	background-color:#f8ffff;
+}

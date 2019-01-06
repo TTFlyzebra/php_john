@@ -1,0 +1,64 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript"> var delurl= '{:U("/Admin/Role/del")}'</script>
+<script type="text/javascript"> var statusurl= '{:U("/Admin/Role/status")}'</script>
+<script type="text/javascript" src="__PUBLIC__/js/admin-role.js"></script>
+</head>
+<body>
+	<div class="sub-nov">
+		&emsp;<a href="{:U('/')}">首页</a>&gt; <a href="{:U('/Admin')}">后台管理</a>&gt; <a href="#">角色管理</a>
+	</div>
+	<div class="content">
+		<table class="admin-tab" width="900px">
+			<tbody align="right">
+				<tr style="background: #e8e8e8">
+					<th width=25%>角色名称</th>
+					<th width=25%>角色描述</th>
+					<th width=25%>使用状态</th>
+					<th width=25%>执行操作</th>
+				</tr>
+				<foreach name='role' item='v'>
+				<tr>
+					<th>{$v.name}</th>
+					<th>{$v.remark}</th>
+					<th><if condition='$v["status"]'>启用<else />停用</if></th>
+					<th><a href="javascript:postdel('{$v.id}','{$v.name}','{$v.pid}','{$v.status}','{$v.remark}');"> 删除
+					</a></th>
+				</tr>
+				</foreach>
+			</tbody>
+		</table>
+		<br>
+		<form name="addFrom" id="addFrom" accept-charset="utf-8" action="__ROOT__/Admin/Role/add" method="post">
+			<table class="admin-tab" width="900px">
+				<tbody>
+					<tr>
+						<th style="background: #e8e8e8" colspan="2">添加角色</th>
+					</tr>
+					<tr>
+						<th><span class="require-red">*</span>角色名称：</th>
+						<td><input class="common-text" type="text" id="role_name" name="role_name" size="40" value=""></td>
+					</tr>
+					<tr>
+						<th><span class="require-red">*</span>角色描述：</th>
+						<td><input class="common-text" type="text" id="role_remark" name="role_remark" size="40" value=""></td>
+					</tr>
+					<tr>
+
+						<th><span class="require-red">*</span>是否启用：</th>
+						<td><input class="common-text" id="role_status" name="role_status" value="1" type="radio" checked="checked">开启 <input class="common-text" id="role_status" name="role_status" value="0" type="radio">关闭</td>
+					</tr>
+					<tr>
+						<th></th>
+						<td><input type="submit" class="btn btn-primary btn6 mr10" value="添加" id="add"> <input type="reset" class="btn btn-primary btn6 mr10" value="重置"></td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

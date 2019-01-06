@@ -1,0 +1,58 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>宇翔科技后台管理</title>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript"> var ajaxurl= '{:U("/Admin/Holiday/del","","")}'</script>
+<script type="text/javascript" src="__PUBLIC__/js/admin-holiday.js"></script>
+</head>
+<body>
+	<div class="sub-nov">
+		&emsp;<a href="{:U('/')}">首页</a>&gt; <a href="{:U('/Admin')}">后台管理</a>&gt; <a href="#">请假分类</a>
+	</div>
+	<div class="content">
+		<table class="admin-tab" width="100%">
+			<tr style="background: #e8e8e8">
+				<th width="120px">请假类型</th>
+				<th width="60px">天数</th>
+				<th>说明</th>
+				<th width="120px">执行操作</th>
+			</tr>
+			<foreach name='holidays' item='v'>
+			<tr>
+				<th>{$v.holidayname}</th>
+				<th>{$v.applydays}</th>
+				<td>{$v.remark}</td>
+				<th><a href="javascript:postdel('{$v.id}');">删除</a></th>
+			</tr>
+			</foreach>
+		</table>
+		<br>
+		<form name="addFrom" id="addFrom" accept-charset="utf-8" action="{:U('/Admin/Holiday/add')}" method="post">
+			<table class="admin-tab" width="100%">
+				<tr>
+					<th style="width: 838px; background: #e8e8e8" colspan="2">添加请假类型</th>
+				</tr>
+				<tr>
+					<th width="200px"><span class="require-red">*</span>请假类别：</th>
+					<td><input class="common-text" id="holidayname" name="holidayname" size="10" value="" type="text"></td>
+				</tr>
+				<tr>
+					<th width="200px"><span class="require-red">*</span>允许天数：</th>
+					<td><input class="common-text" id="applydays" name="applydays" size="5" value="" type="text"></td>
+				</tr>
+				<tr>
+					<th><span class="require-red">&ensp;</span>说&emsp;&emsp;明：</th>
+					<td><textarea class="text-textarea" name="remark" id="remark" cols="30" style="width: 96%;" rows="2"></textarea></td>
+				</tr>
+				<tr>
+					<th colspan="2"><input type="submit" class="btn btn-primary btn6 mr10" value="添加" id="add"> <input type="reset" class="btn btn-primary btn6 mr10" value="重置"></th>
+				</tr>
+			</table>
+		</form>
+	</div>
+
+</body>
+</html>

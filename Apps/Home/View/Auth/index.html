@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/main.css" />
+<script type="text/javascript" src="__PUBLIC__/js/times.js"></script>
+</head>
+<body onload="showLeftTime()">
+	<div class="top">
+		<div class="top-logo">
+			<img alt="" src="__PUBLIC__/images/logo.png">
+		</div>
+		<div class="top-name">
+			<div class="top-name-cn">考勤管理系统1.0V</div>
+		</div>
+		<div class="top-info">
+			<div class="top-info-date">
+				<label id="show">显示时间的位置</label>
+			</div>
+		</div>
+	</div>
+	<div class="sidebar">
+		<div class="sidebar-user">
+			<img src="__APP__{$Think.session.photo} ">
+			<div class="sidebar-text">{$Think.session.loginIP}</div>
+			<div class="sidebar-text">{$Think.session.loginname}</div>
+		</div>
+		<ul class="sidebar-list">
+		<?php if($super
+				||in_array("/Home/ApplyWorkday",$paths)
+				||in_array("/Home/ApplyHoliday",$paths)
+				||in_array("/Home/ShowApply",$paths)
+				||in_array("/Home/Record",$paths)
+				||in_array("/Home/HandleApply",$paths)){ ?>
+			<li>
+				<a href="#">工作安排</a>
+				<ul class="sub-menu">
+					<?php if($super||in_array("/Home/ApplyWorkday",$paths)){ ?>
+					<li>
+						<a href="{:U('/Home/ApplyWorkday')}">加班申请</a>
+					</li>
+					<?php } ?>
+					<?php if($super||in_array("/Home/ApplyHoliday",$paths)){ ?>
+					<li>
+						<a href="{:U('/Home/ApplyHoliday')}">休假申请</a>
+					</li>
+					<?php } ?>
+					<?php if($super||in_array("/Home/ShowApply",$paths)){ ?>
+					<li>
+						<a href="{:U('/Home/ShowApply')}">申请记录</a>
+					</li>
+					<?php } ?>
+					<?php if($super||in_array("/Home/Record",$paths)){ ?>
+					<li>
+						<a href="{:U('/Home/Record')}">本月概况</a>
+					</li>
+					<?php } ?>
+					<?php if($super||in_array("/Home/HandleApply",$paths)){ ?>
+					<li>
+						<a href="{:U('/Home/HandleApply')}">审核申请</a>
+					</li>
+					<?php } ?>
+				</ul>
+			</li>
+			<?php } ?>
+			<?php if($super||in_array("/Admin",$paths)){ ?>
+			<li>
+				<a href="#">后台管理</a>
+				<ul class="sub-menu">
+					<li>
+						<a href="{:U('/Admin')}">进入后台</a>
+					</li>
+				</ul>
+			</li>
+			<?php } ?>
+			<?php if($super||in_array("/Home/EditUser",$paths)){ ?>
+			<li>
+				<a href="#">用户管理</a>
+				<ul class="sub-menu">
+					<li>
+						<a href="{:U('/Home/EditUser')}">修改资料</a>
+					</li>
+					<li>
+						<a href="{:U('/Home/Login/logout')}">安全退出</a>
+					</li>
+				</ul>
+			</li>
+			<?php } ?>			
+		</ul>
+	</div>
+</body>
+</html>
